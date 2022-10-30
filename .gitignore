@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/clion,windows,c++,cmake
-# Edit at https://www.toptal.com/developers/gitignore?templates=clion,windows,c++,cmake
+# Created by https://www.toptal.com/developers/gitignore/api/clion,c++,windows
+# Edit at https://www.toptal.com/developers/gitignore?templates=clion,c++,windows
 
 ### C++ ###
 # Prerequisites
@@ -148,23 +148,6 @@ fabric.properties
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
 .idea/**/azureSettings.xml
 
-### CMake ###
-CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
-
-### CMake Patch ###
-# External projects
-*-prefix/
-
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -191,4 +174,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/clion,windows,c++,cmake
+# End of https://www.toptal.com/developers/gitignore/api/clion,c++,windows
