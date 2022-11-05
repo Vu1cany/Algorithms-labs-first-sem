@@ -5,6 +5,8 @@ void RadXSort(std::string *arr, int n, int k) {
 
 }
 
+//test
+
 std::string CountingSort(std::string s1) {
     int k = -INT_MAX;
     for (char C: s1) {
