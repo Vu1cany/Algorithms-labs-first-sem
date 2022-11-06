@@ -5,26 +5,28 @@ void RadXSort(std::string *arr, int n, int k) {
 
 }
 
-//test
-
-std::string CountingSort(std::string s1) {
+char* CountingSort(std::string s1) {
     int k = -INT_MAX;
     for (char C: s1) {
         k = std::max((int)C + 1, k);
     }
-    int CountArr[k] = { 0 };
+    int CountArr[k];
+    for (int i = 0; i < k; ++i) CountArr[i] = 0;
+
     for (char C: s1) {
         CountArr[(int)C] = ++CountArr[(int)C];
     }
     for (int i = 1; i < k; ++i) {
         CountArr[i] = CountArr[i] + CountArr[i-1];
     }
-    std::string s1Sort;
-    for (int i = s1.size() - 1; i > 0; --i) {
+
+    char s1Sort[s1.size()];
+    for (int i = s1.size() - 1; i >= 0; --i) {
         if (CountArr[(int)s1[i]] == 0) continue;
-        s1Sort + s1[i];
+        s1Sort[CountArr[(int)s1[i]] - 1] = s1[i];
         CountArr[(int)s1[i]]--;
     }
+
     return s1Sort;
 }
 
