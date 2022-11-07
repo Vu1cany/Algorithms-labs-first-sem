@@ -1,33 +1,40 @@
 #include <iostream>
 #include <string>
 
-void RadXSort(std::string *arr, int n, int k) {
+std::string* RadixSort(std::string *ArrString, int n, int m, int k) {
+    for (int i = 0; i < k; ++i) {
+        std::string s1;
+        for (int j = 0; j < n; ++j) {
+            s1 += ArrString[j][m - 1 - i];
+        }
 
-}
+        int count = -INT_MAX;
+        for (char C: s1) {
+            count = std::max((int)C + 1, count);
+        }
 
-char* CountingSort(std::string s1) {
-    int k = -INT_MAX;
-    for (char C: s1) {
-        k = std::max((int)C + 1, k);
+        int CountArr[count];
+        for (int j = 0; j < count; ++j) CountArr[j] = 0;
+
+        for (char C: s1) {
+            CountArr[(int)C] = ++CountArr[(int)C];
+        }
+
+        for (int j = 1; j < count; ++j) {
+            CountArr[j] = CountArr[j] + CountArr[j-1];
+        }
+
+        std::string stringArrSort[n];
+        for (int j = n - 1; j >= 0; --j) {
+            if (CountArr[(int)ArrString[j][m - 1 - i]] != 0) {
+                stringArrSort[CountArr[(int)ArrString[j][m - 1 - i]] - 1] = ArrString[j];
+                CountArr[(int)ArrString[j][m - 1 - i]]--;
+            }
+        }
+        for (int j = 0; j < n; ++j) ArrString[j] = stringArrSort[j];
     }
-    int CountArr[k];
-    for (int i = 0; i < k; ++i) CountArr[i] = 0;
 
-    for (char C: s1) {
-        CountArr[(int)C] = ++CountArr[(int)C];
-    }
-    for (int i = 1; i < k; ++i) {
-        CountArr[i] = CountArr[i] + CountArr[i-1];
-    }
-
-    char s1Sort[s1.size()];
-    for (int i = s1.size() - 1; i >= 0; --i) {
-        if (CountArr[(int)s1[i]] == 0) continue;
-        s1Sort[CountArr[(int)s1[i]] - 1] = s1[i];
-        CountArr[(int)s1[i]]--;
-    }
-
-    return s1Sort;
+    return ArrString;
 }
 
 int main() {
@@ -37,13 +44,9 @@ int main() {
     for (int i = 0; i < n; ++i) {
         std::cin >> stringArr[i];
     }
+    std::string *stringArrSort = RadixSort(stringArr, n, m, k);
 
-    std::string s1Sort = CountingSort(stringArr[0]);
-    std::cout << s1Sort;
-
-    /*for (int i = 0; i < n; ++i) {
-        std::cout << arr[i] << "\n";
-    }*/
+    for (int i = 0; i < n; ++i) std::cout << stringArrSort[i] << "\n";
 
     return 0;
 }
