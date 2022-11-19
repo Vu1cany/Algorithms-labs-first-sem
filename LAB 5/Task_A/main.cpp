@@ -1,13 +1,14 @@
 #include <iostream>
 
 struct Three{
-    int data = 0;
-    int leftChild = 0;
-    int rightChild = 0;
+    int data;
+    int leftChild;
+    int rightChild;
 };
 
-void ThreeHeight(Three *array, int &maxH, int height,  int i) {
-    maxH = std::max(maxH, height);
+void ThreeHeight(Three *array, int &maxH, int height = 0,  int i = 0) {
+    //maxH = std::max(maxH, height);
+    maxH = maxH > height ? maxH : height;
     if (array[i].leftChild != 0) {
         ThreeHeight(array, maxH, height + 1, array[i].leftChild - 1);
     }
@@ -31,8 +32,9 @@ int main() {
         std::cin >> arr[i].data >> arr[i].leftChild >> arr[i].rightChild;
     }
 
+
     int max = 0;
-    ThreeHeight(arr, max, 1, 0);
+    ThreeHeight(arr, max, 1);
 
     std::cout << max;
 
