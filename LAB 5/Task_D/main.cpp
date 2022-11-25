@@ -10,8 +10,6 @@ private:
         Node *parent = nullptr;
     };
 
-
-
 public:
 
     Node *root = nullptr;
@@ -25,22 +23,24 @@ public:
             return;
         }
 
-        while (X != nullptr) {   //
-            if (p->data > X->data) {
-                if (X->right != nullptr) {
-                    X = X->right;
+        if (Search(root, _data) == nullptr) {
+            while (X != nullptr) {   //
+                if (p->data > X->data) {
+                    if (X->right != nullptr) {
+                        X = X->right;
+                    } else {
+                        p->parent = X;
+                        X->right = p;
+                        return;
+                    }
                 } else {
-                    X->right = p;
-                    p->parent = X;
-                    break;
-                }
-            } else {
-                if (X->left != nullptr) {
-                    X = X->left;
-                } else {
-                    X->left = p;
-                    p->parent = X;
-                    break;
+                    if (X->left != nullptr) {
+                        X = X->left;
+                    } else {
+                        p->parent = X;
+                        X->left = p;
+                        return;
+                    }
                 }
             }
         }
@@ -86,7 +86,6 @@ public:
     void Delete(int _data) {
         Node *p = Search(root, _data);
         if (p == nullptr) return;
-        Node *parent = p->parent;
 
         if (p == root) {
             if (p->left == nullptr && p->right == nullptr) {
@@ -112,6 +111,8 @@ public:
             return;
         }
 
+        Node *parent = p->parent;
+
         if (p->left == nullptr && p->right == nullptr) {
             if (p == parent->right) {
                 parent->right = nullptr;
@@ -130,9 +131,9 @@ public:
 
             } else {
                 if (p == parent->right) {
-                    parent->right = p->left;
+                    parent->right = p->right;
                 } else {
-                    parent->left = p->left;
+                    parent->left = p->right;
                 }
                 p->right->parent = parent;
             }
