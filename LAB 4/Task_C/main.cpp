@@ -56,7 +56,7 @@ public:
     void ExtractMin() {
         int size = vector1.size();
         if (vector1.empty()) {
-            std::cout << "*" << "\n";
+            std::cout << "*" << "\n";       //Если такого такого элемента нет ничего не удаляем
             return;
         }
         std::cout << vector1[0] << "\n";
